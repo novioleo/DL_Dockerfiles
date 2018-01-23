@@ -7,12 +7,8 @@ RUN apt-get -y upgrade
 RUN apt-get install -y build-essential git
 # must install opencv first,otherwise the dbus module will corrupt with anaconda3~
 RUN apt-get install -y libopencv-dev
-# you can dowload OpenBlas by yourself
-# ADD http://github.com/xianyi/OpenBLAS/archive/v0.2.20.tar.gz ./openblas
-ADD OpenBLAS-0.2.20.tar.gz ./openblas
-WORKDIR openblas/OpenBLAS-0.2.20
-RUN apt-get install -y gfortran
-RUN make FC=gfortran -j $(($(nproc)-1)) && make install
+# libatlas-base will provide the cblas
+RUN apt-get install -y libopenblas-dev libatlas-base-dev
 RUN apt-get install -y liblapack-dev
 WORKDIR /run
 # you can download by yourself
