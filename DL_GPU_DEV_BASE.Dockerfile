@@ -1,3 +1,4 @@
+# choose the source image with your cuda version.
 from nvidia/cuda:9.1-cudnn7-devel-ubuntu16.04
 MAINTAINER novio<nsnovio@gmail.com>
 WORKDIR /run
