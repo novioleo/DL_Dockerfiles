@@ -16,5 +16,7 @@ WORKDIR /run
 # ADD https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-4.2.0-Linux-x86_64.sh ./
 ADD Anaconda3.sh ./
 RUN bash Anaconda3.sh -b -p /root/anaconda3
-ENV PATH="root/anaconda3/bin:${PATH}"
+ENV PATH="/root/anaconda3/bin:${PATH}"
+RUN ln -sf /usr/lib/x86_64-linux-gnu/libgomp.so.1 /root/anaconda3/lib/
+RUN ln -sf /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /root/anaconda3/lib/
 RUN rm -f Anaconda3.sh
