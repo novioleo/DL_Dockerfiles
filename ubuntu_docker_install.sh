@@ -10,7 +10,7 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 sudo apt-get update
-sudo apt-get install -y -q docker-ce=17.09.1*
+sudo apt-get install -y -q docker-ce
 sudo service docker start
 sudo service docker status
 
@@ -30,7 +30,7 @@ sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo tee /etc/systemd/system/docker.service.d/override.conf <<EOF
 [Service]
 ExecStart=
-ExecStart=/usr/bin/dockerd --host=fd:// --add-runtime=nvidia=/usr/bin/nvidia-container-runtime --default-runtime=nvidia
+ExecStart=/usr/bin/dockerd -H unix:// --add-runtime=nvidia=/usr/bin/nvidia-container-runtime --default-runtime=nvidia
 EOF
 sudo rm -f /etc/docker/daemon.json
 sudo tee /etc/docker/daemon.json <<EOF
