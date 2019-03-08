@@ -7,7 +7,7 @@ sudo systemctl enable docker
 sudo systemctl start docker
 sudo systemctl status docker
 # 将当前用户添加到docker组
-sudo useradd -a -G docker `whoami`
+sudo usermod -a -G docker `whoami`
 # 检查是否存在nvidia-docker1，并删除
 docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
 sudo yum remove nvidia-docker
